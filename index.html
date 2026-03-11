@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fit Finder</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="left">
+      <span class="crumb" id="homeCrumb" style="font-size:18px;">🏠</span>
+      <span>&gt;</span>
+      <span class="crumb" id="chatCrumb">Chat - 1</span>
+    </div>
+
+    <div class="right">
+      <button class="ghost" id="btnShare">Share</button>
+      <button class="ghost" id="btnDelete">Delete</button>
+      <select class="langSelect" id="lang">
+        <option value="en">English</option>
+        <option value="de">Deutsch</option>
+        <option value="kk">Қазақша</option>
+        <option value="ru">Русский</option>
+        <option value="es">Español</option>
+        <option value="ar">العربية</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <aside class="sidebar">
+      <div class="sidebarLogo">
+        <img src="assets/logo.png" alt="Fit Finder logo">
+      </div>
+
+      <div class="navItem" id="navNewChat">New chat</div>
+      <div class="navItem" id="navSearchChats">Search chats</div>
+
+      <div class="navTitle" id="navYourChats">Your chats</div>
+
+      <!-- Dynamic chat list -->
+      <div id="chatList"></div>
+
+      <div class="userCard">
+        <div class="avatar">UN</div>
+        <div class="userMeta">
+          <b id="userName">User Name</b>
+          <small id="userRole">Student</small>
+        </div>
+      </div>
+    </aside>
+
+    <main class="content">
+      <div class="board">
+        <!-- Left: Form -->
+        <section class="panel" id="panelForm">
+          <h2 id="titleGenerate">Generate an Outfit</h2>
+
+          <div class="formGrid">
+            <div class="field">
+              <label id="lblLocation" for="location">Location</label>
+              <select class="control" id="location">
+                <option value="">-</option>
+                <option value="Almaty">Almaty</option>
+                <option value="Astana">Astana</option>
+                <option value="Berlin">Berlin</option>
+                <option value="Madrid">Madrid</option>
+                <option value="Dubai">Dubai</option>
+                <option value="New York">New York</option>
+              </select>
+            </div>
+
+            <div class="row2">
+              <div class="field">
+                <label id="lblTemp" for="temp">Temperature (°C)</label>
+                <input class="control" id="temp" type="number" placeholder="-" />
+              </div>
+              <div class="field">
+                <label id="lblSeason" for="season">Season</label>
+                <select class="control" id="season">
+                  <option value="">-</option>
+                  <option value="winter">Winter</option>
+                  <option value="spring">Spring</option>
+                  <option value="summer">Summer</option>
+                  <option value="autumn">Autumn</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label id="lblWeather" for="weather">Weather</label>
+              <input class="control" id="weather" placeholder="e.g. rainy" />
+            </div>
+
+            <div class="field">
+              <label id="lblOccasion" for="occasion">Occasion</label>
+              <input class="control" id="occasion" placeholder="e.g. wedding" />
+            </div>
+
+            <div class="field">
+              <label id="lblMood" for="mood">Mood-based</label>
+              <input class="control" id="mood" placeholder="e.g. confident" />
+            </div>
+
+            <button class="btnPrimary" id="btnGenerate">Generate</button>
+          </div>
+        </section>
+
+        <!-- Right: Results -->
+        <section class="rightCol">
+          <div class="panel" id="panelWardrobe">
+            <h2 id="titleWardrobe">Wardrobe</h2>
+            <div class="wardrobeBar" id="wardrobeBar">
+              <div class="wardrobeItem corrected">
+                <div class="icon" id="iconTop">🧥</div>
+                <small id="labTop">Top</small>
+              </div>
+              <div class="wardrobeItem corrected">
+                <div class="icon" id="iconBottom">👖</div>
+                <small id="labBottom">Bottom</small>
+              </div>
+              <div class="wardrobeItem corrected">
+                <div class="icon" id="iconAccessory">⌚</div>
+                <small id="labAccessory">Accessory</small>
+              </div>
+              <div class="wardrobeItem corrected">
+                <div class="icon" id="iconShoes">👟</div>
+                <small id="labShoes">Shoes</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel" id="panelColors">
+            <h2 id="titleColors">Color scheme</h2>
+            <div class="colors" id="colorsRow">
+              <div class="swatch">
+                <div class="dot" id="c1"></div>
+                <div class="hex" id="h1">#XXXXXX</div>
+              </div>
+              <div class="swatch">
+                <div class="dot" id="c2"></div>
+                <div class="hex" id="h2">#XXXXXX</div>
+              </div>
+              <div class="swatch">
+                <div class="dot" id="c3"></div>
+                <div class="hex" id="h3">#XXXXXX</div>
+              </div>
+              <div class="swatch">
+                <div class="dot" id="c4"></div>
+                <div class="hex" id="h4">#XXXXXX</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel" id="panelSuggest">
+            <h2 id="titleAI">AI Suggestions</h2>
+            <div class="suggestBox" id="suggestBox">
+              <em id="suggestPlaceholder">Fill the form and press “Generate”.</em>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Search modal -->
+  <div class="modalOverlay" id="searchOverlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="searchTitle">
+      <div class="modalHeader">
+        <div class="modalTitle" id="searchTitle">Search chats</div>
+        <button class="modalClose" id="searchClose" aria-label="Close">✕</button>
+      </div>
+
+      <div class="modalBody">
+        <label class="modalLabel" id="searchLabel" for="searchInput">Chat name</label>
+        <input class="control" id="searchInput" placeholder="e.g. Chat - 3" />
+        <div class="modalHint" id="searchHint">Type a name and press Search.</div>
+        <div class="modalError" id="searchError" style="display:none;"></div>
+
+        <div class="modalActions">
+          <button class="ghost" id="searchCancel">Cancel</button>
+          <button class="btnPrimary modalPrimary" id="searchGo">Search</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
+
+</body>
+</html>
