@@ -109,11 +109,7 @@ Open:
 - Mobile-friendly layout improvements
 - More detailed wardrobe constraints (budget, dress code, brands, colors to avoid)
 
----
 
-## Author
-
-Alexandr  Chevychalov (Software Engineering student)
 
 ## 👥 Project Team
 * Alexandr Chevychalov
