@@ -113,4 +113,11 @@ Open:
 
 ## Author
 
-Alexandr **"retr0stack"** Chevychalov (Software Engineering student)
+Alexandr  Chevychalov (Software Engineering student)
+
+## 👥 Project Team
+* Alexandr Chevychalov
+* Shako Nareman Salam
+* Beatrice Raphael Msokwa
+* Roudi Al Asmar
+* Arhan Arda Ergül
